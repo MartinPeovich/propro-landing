@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Instagram, Mail, Music2 } from "lucide-react";
-import SlideIn from "@/components/animations/SlideIn";
-import Reveal from "@/components/animations/Reveal";
+import { SlideIn } from "@/components/animations/SlideIn";
+import { Reveal } from "@/components/animations/Reveal";
 
 
 export default function LandingPROPRO() {
@@ -66,6 +66,7 @@ export default function LandingPROPRO() {
                 muted
                 loop
                 playsInline
+                aria-label="Video tutorial de registro en PRO&PRO"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -103,6 +104,7 @@ export default function LandingPROPRO() {
                 muted
                 loop
                 playsInline
+                aria-label="Video tutorial para comenzar en PRO&PRO"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -122,6 +124,7 @@ export default function LandingPROPRO() {
                 muted
                 loop
                 playsInline
+                aria-label="Video tutorial interactivo de PRO&PRO"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -159,6 +162,7 @@ export default function LandingPROPRO() {
                 muted
                 loop
                 playsInline
+                aria-label="Video del glosario de PRO&PRO"
                 className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
@@ -173,7 +177,7 @@ export default function LandingPROPRO() {
       <Button
         size="lg"
         className="rounded-2xl bg-primary text-primary-foreground hover:bg-primary/90"
-        onClick={() => window.open("https://TU-APP.vercel.app", "_self")}
+        onClick={() => window.open("https://explorador-vocacional.vercel.app/", "_self")}
       >
         Comenzar ahora
       </Button>

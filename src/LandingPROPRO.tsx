@@ -66,6 +66,7 @@ export default function LandingPROPRO() {
                       muted
                       loop
                       playsInline
+                      controls
                       aria-label="Video tutorial de registro en PRO&PRO"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
@@ -104,6 +105,7 @@ export default function LandingPROPRO() {
                       muted
                       loop
                       playsInline
+                      controls
                       aria-label="Video tutorial para comenzar en PRO&PRO"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
@@ -124,6 +126,7 @@ export default function LandingPROPRO() {
                       muted
                       loop
                       playsInline
+                      controls
                       aria-label="Video tutorial interactivo de PRO&PRO"
                       className="absolute inset-0 w-full h-full object-cover"
                     />
@@ -162,6 +165,7 @@ export default function LandingPROPRO() {
                       muted
                       loop
                       playsInline
+                      controls
                       aria-label="Video del glosario de PRO&PRO"
                       className="absolute inset-0 w-full h-full object-cover"
                     />

@@ -124,7 +124,7 @@ export default function LandingPROPRO() {
                 {/* Video */}
                 <div className="flex justify-center md:justify-start">
                   <div className="relative w-full max-w-md overflow-hidden rounded-3xl bg-black aspect-video">
-                    <video
+                   <video
   autoPlay
   muted
   loop

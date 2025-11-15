@@ -2,6 +2,11 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Instagram, Mail, Music2 } from "lucide-react";
 import { SlideIn } from "@/components/animations/SlideIn";
 import { Reveal } from "@/components/animations/Reveal";
+import registroVideo from "@/assets/videos/registro.mp4";
+import comenzarVideo from "@/assets/videos/comenzar.mp4";
+import glosarioVideo from "@/assets/videos/glosario.mp4";
+import tutorialVideo from "@/assets/videos/tutorial.mp4";
+
 
 
 export default function LandingPROPRO() {
@@ -69,9 +74,10 @@ export default function LandingPROPRO() {
   preload="metadata"
   className="absolute inset-0 w-full h-full object-cover"
 >
-  <source src="/videos/registro.mp4" type="video/mp4" />
+  <source src={registroVideo} type="video/mp4" />
   Tu navegador no soporta video HTML5.
 </video>
+
                   </div>
                 </div>
                 {/* Texto */}
@@ -110,9 +116,10 @@ export default function LandingPROPRO() {
   preload="metadata"
   className="absolute inset-0 w-full h-full object-cover"
 >
-  <source src="/videos/comenzar.mp4" type="video/mp4" />
+ <source src={comenzarVideo} type="video/mp4" />
   Tu navegador no soporta video HTML5.
 </video>
+
                   </div>
                 </div>
               </div>
@@ -133,9 +140,10 @@ export default function LandingPROPRO() {
   preload="metadata"
   className="absolute inset-0 w-full h-full object-cover"
 >
-  <source src="/videos/tutorial.mp4" type="video/mp4" />
+  <source src={tutorialVideo} type="video/mp4" />
   Tu navegador no soporta video HTML5.
 </video>
+
                   </div>
                 </div>
                 {/* Texto */}
@@ -174,9 +182,10 @@ export default function LandingPROPRO() {
   preload="metadata"
   className="absolute inset-0 w-full h-full object-cover"
 >
-  <source src="/videos/glosario.mp4" type="video/mp4" />
+  <source src={glosarioVideo} type="video/mp4" />
   Tu navegador no soporta video HTML5.
 </video>
+
                   </div>
                 </div>
               </div>

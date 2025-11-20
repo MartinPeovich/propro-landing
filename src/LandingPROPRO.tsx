@@ -2,75 +2,70 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Instagram, Mail, Music2 } from "lucide-react";
 import { SlideIn } from "@/components/animations/SlideIn";
 import { Reveal } from "@/components/animations/Reveal";
-import { BackgroundImage } from "@/components/ui/BackgroundImage";
 import registroVideo from "@/assets/videos/registro.mp4";
 import comenzarVideo from "@/assets/videos/comenzar.mp4";
 import glosarioVideo from "@/assets/videos/glosario.mp4";
 import tutorialVideo from "@/assets/videos/tutorial.mp4";
-import mapaBg from './assets/mapa.png';
+import mapaBg from "@/assets/mapa.png";
 
 
-// Constants for better maintainability
-const BACKGROUND_CONFIG = {
-  MAPA_IMAGE: mapaBg,
-  LOADING_STRATEGY: 'eager' as const,
-  BLUR_INTENSITY: 'blur-sm',
-  OVERLAY_GRADIENT: 'from-black/40 via-black/20 to-black/60',
-};
+
 
 
 export default function LandingPROPRO() {
   return (
     <main className="flex flex-col">
       {/* HERO */}
-      <section className="relative overflow-hidden px-6 py-24 md:py-28 text-center">
-        {/* Enhanced background with error handling and performance optimization */}
-        <BackgroundImage
-  src={BACKGROUND_CONFIG.MAPA_IMAGE}
-  alt="Background map showing educational paths"
-  blur={true}
-  loadingStrategy={BACKGROUND_CONFIG.LOADING_STRATEGY}
-  overlayClassName="-z-10 pointer-events-none"
-/>
+     <section className="relative overflow-hidden px-6 py-24 md:py-28 text-center">
+  {/* Fondo con mapa + blur + overlay */}
+  <div className="absolute inset-0 z-0">
+    <div
+      className="w-full h-full bg-cover bg-center blur-[2px] opacity-60"
+      style={{ backgroundImage: `url(${mapaBg})` }}
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950/90" />
+  </div>
 
+  {/* Contenido del hero por encima del fondo */}
+  <div className="relative z-10">
+    <Reveal>
+      <span className="inline-block rounded-full border px-3 py-1 text-xs text-muted-foreground mb-6">
+        Propósito Profesional
+      </span>
+    </Reveal>
 
+    <Reveal delay={0.05}>
+      <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+        {"Tú guía"}
+        <span className="text-indigo-600 dark:text-indigo-400">
+          {" "}de exploración vocacional
+        </span>
+      </h2>
+    </Reveal>
 
-        <Reveal>
-          <span className="inline-block rounded-full border px-3 py-1 text-xs text-muted-foreground mb-6">
-            Propósito Profesional
-          </span>
-        </Reveal>
+    <Reveal delay={0.1}>
+      <p className="max-w-2xl mx-auto text-base md:text-lg text-muted-foreground mb-8">
+        UNLP
+      </p>
+    </Reveal>
 
-        <Reveal delay={0.05}>
-          <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-            {"Tú guía"}
-            <span className="text-indigo-600 dark:text-indigo-400">
-               de exploración vocacional
-            </span>
-          </h2>
-        </Reveal>
+    <Reveal delay={0.15}>
+      <Button
+        size="lg"
+        className="rounded-2xl gap-2"
+        onClick={() =>
+          window.open(
+            "https://explorador-vocacional.vercel.app/",
+            "_blank",
+          )
+        }
+      >
+        ¡Comenzar aventura! <ArrowRight className="w-4 h-4" />
+      </Button>
+    </Reveal>
+  </div>
+</section>
 
-        <Reveal delay={0.1}>
-          <p className="max-w-2xl mx-auto text-base md:text-lg text-muted-foreground mb-8">
-            UNLP
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.15}>
-          <Button
-            size="lg"
-            className="rounded-2xl gap-2"
-            onClick={() =>
-              window.open(
-                "https://explorador-vocacional.vercel.app/",
-                "_blank",
-              )
-            }
-          >
-            ¡Comenzar aventura! <ArrowRight className="w-4 h-4" />
-          </Button>
-        </Reveal>
-      </section>
 
       {/* HOW IT WORKS — estilo Pitch con videos */}
       <section className="px-6 py-24 md:py-32 bg-background">

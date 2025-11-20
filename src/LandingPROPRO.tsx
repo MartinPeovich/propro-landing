@@ -12,10 +12,22 @@ export default function LandingPROPRO() {
     <main className="flex flex-col">
       {/* HERO */}
       <section className="relative overflow-hidden px-6 py-24 md:py-28 text-center">
-        {/* Fondo suave */}
-        <div className="pointer-events-none absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-500/10 via-transparent to-transparent dark:from-indigo-400/10" />
-        </div>
+        {/* Fondo con imagen + blur + overlay */}
+<div className="pointer-events-none absolute inset-0 -z-10">
+
+  {/* Imagen de fondo */}
+  <div
+    className="absolute inset-0 bg-cover bg-center blur-sm"
+    style={{
+      backgroundImage: "url('/mapa')", // Cambiá por tu ruta
+    }}
+  />
+
+  {/* Overlay degradado */}
+  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
+
+</div>
+
 
         <Reveal>
           <span className="inline-block rounded-full border px-3 py-1 text-xs text-muted-foreground mb-6">
@@ -25,9 +37,9 @@ export default function LandingPROPRO() {
 
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-            PRO&PRO{" "}
+            {" "}
             <span className="text-indigo-600 dark:text-indigo-400">
-              tu app de exploración vocacional.
+              Tú guía de exploración vocacional
             </span>
           </h2>
         </Reveal>

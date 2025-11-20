@@ -2,31 +2,33 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Instagram, Mail, Music2 } from "lucide-react";
 import { SlideIn } from "@/components/animations/SlideIn";
 import { Reveal } from "@/components/animations/Reveal";
+import { BackgroundImage } from "@/components/ui/BackgroundImage";
 import registroVideo from "@/assets/videos/registro.mp4";
 import comenzarVideo from "@/assets/videos/comenzar.mp4";
 import glosarioVideo from "@/assets/videos/glosario.mp4";
 import tutorialVideo from "@/assets/videos/tutorial.mp4";
+
+// Constants for better maintainability
+const BACKGROUND_CONFIG = {
+  MAPA_IMAGE: '/mapa.png', // Fixed extension
+  LOADING_STRATEGY: 'eager' as const, // Preload for hero section
+  BLUR_INTENSITY: 'blur-sm',
+  OVERLAY_GRADIENT: 'from-black/40 via-black/20 to-black/60'
+};
 
 export default function LandingPROPRO() {
   return (
     <main className="flex flex-col">
       {/* HERO */}
       <section className="relative overflow-hidden px-6 py-24 md:py-28 text-center">
-        {/* Fondo con imagen + blur + overlay */}
-<div className="pointer-events-none absolute inset-0 -z-10">
-
-  {/* Imagen de fondo */}
-  <div
-    className="absolute inset-0 bg-cover bg-center blur-sm"
-    style={{
-      backgroundImage: "url('/mapa')", // Cambiá por tu ruta
-    }}
-  />
-
-  {/* Overlay degradado */}
-  <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
-
-</div>
+        {/* Enhanced background with error handling and performance optimization */}
+        <BackgroundImage
+          src={BACKGROUND_CONFIG.MAPA_IMAGE}
+          alt="Background map showing educational paths"
+          blur={true}
+          loadingStrategy={BACKGROUND_CONFIG.LOADING_STRATEGY}
+          overlayClassName="-z-10 pointer-events-none"
+        />
 
 
         <Reveal>
@@ -37,9 +39,9 @@ export default function LandingPROPRO() {
 
         <Reveal delay={0.05}>
           <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-            {" "}
+            {"Tú guía"}
             <span className="text-indigo-600 dark:text-indigo-400">
-              Tú guía de exploración vocacional
+               de exploración vocacional
             </span>
           </h2>
         </Reveal>

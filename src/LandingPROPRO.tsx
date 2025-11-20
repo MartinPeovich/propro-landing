@@ -7,14 +7,17 @@ import registroVideo from "@/assets/videos/registro.mp4";
 import comenzarVideo from "@/assets/videos/comenzar.mp4";
 import glosarioVideo from "@/assets/videos/glosario.mp4";
 import tutorialVideo from "@/assets/videos/tutorial.mp4";
+import mapaBg from './assets/mapa.png';
+
 
 // Constants for better maintainability
 const BACKGROUND_CONFIG = {
-  MAPA_IMAGE: '/mapa.png', // Fixed extension
-  LOADING_STRATEGY: 'eager' as const, // Preload for hero section
+  MAPA_IMAGE: mapaBg,
+  LOADING_STRATEGY: 'eager' as const,
   BLUR_INTENSITY: 'blur-sm',
-  OVERLAY_GRADIENT: 'from-black/40 via-black/20 to-black/60'
+  OVERLAY_GRADIENT: 'from-black/40 via-black/20 to-black/60',
 };
+
 
 export default function LandingPROPRO() {
   return (
@@ -23,12 +26,13 @@ export default function LandingPROPRO() {
       <section className="relative overflow-hidden px-6 py-24 md:py-28 text-center">
         {/* Enhanced background with error handling and performance optimization */}
         <BackgroundImage
-          src={BACKGROUND_CONFIG.MAPA_IMAGE}
-          alt="Background map showing educational paths"
-          blur={true}
-          loadingStrategy={BACKGROUND_CONFIG.LOADING_STRATEGY}
-          overlayClassName="-z-10 pointer-events-none"
-        />
+  src={BACKGROUND_CONFIG.MAPA_IMAGE}
+  alt="Background map showing educational paths"
+  blur={true}
+  loadingStrategy={BACKGROUND_CONFIG.LOADING_STRATEGY}
+  overlayClassName="-z-10 pointer-events-none"
+/>
+
 
 
         <Reveal>

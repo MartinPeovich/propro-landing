@@ -1,5 +1,13 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Instagram, Mail, Music2 } from "lucide-react";
+import {
+  ArrowRight,
+  Instagram,
+  Mail,
+  Music2,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { SlideIn } from "@/components/animations/SlideIn";
 import { Reveal } from "@/components/animations/Reveal";
 import registroVideo from "@/assets/videos/registro.mp4";
@@ -8,67 +16,108 @@ import glosarioVideo from "@/assets/videos/glosario.mp4";
 import tutorialVideo from "@/assets/videos/tutorial.mp4";
 import mapaBg from "@/assets/mapa.png";
 
-
-
-
+// imágenes de merchandising (ajustá rutas/nombres si son distintos)
+import merch1 from "@/assets/tienda/tienda-1.png";
+import merch2 from "@/assets/tienda/tienda-2.png";
+import merch3 from "@/assets/tienda/tienda-3.png";
 
 export default function LandingPROPRO() {
+  const merchSlides = [
+    {
+      title: "Stickers PRO&PRO",
+      tag: "Nuevo",
+      description:
+        "Pack de stickers para notebooks, carpetas y espacios de trabajo, con estética de la app.",
+      image: merch1,
+    },
+    {
+      title: "Remera PRO&PRO",
+      tag: "Edición limitada",
+      description:
+        "Remera con identidad PRO&PRO para eventos, ferias y actividades de orientación.",
+      image: merch2,
+    },
+    {
+      title: "Kit merchandising",
+      tag: "Para instituciones",
+      description:
+        "Combo de materiales gráficos y merch para acompañar propuestas de orientación vocacional.",
+      image: merch3,
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % merchSlides.length);
+
+  const prevSlide = () =>
+    setCurrentSlide((prev) =>
+      prev === 0 ? merchSlides.length - 1 : prev - 1,
+    );
+
   return (
     <main className="flex flex-col">
       {/* HERO */}
-     <section className="relative overflow-hidden px-6 py-24 md:py-28 text-center">
-  {/* Fondo con mapa + blur + overlay */}
-  <div className="absolute inset-0 z-0">
-    <div
-      className="w-full h-full bg-cover bg-center blur-[2px] opacity-60"
-      style={{ backgroundImage: `url(${mapaBg})` }}
-    />
-    <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950/90" />
-  </div>
-
-  {/* Contenido del hero por encima del fondo */}
-  <div className="relative z-10">
-    <Reveal>
-      <span className="inline-block rounded-full border px-3 py-1 text-xs text-muted-foreground mb-6">
-        Propósito Profesional
-      </span>
-    </Reveal>
-
-    <Reveal delay={0.05}>
-      <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
-        {"Tú guía"}
-        <span className="text-indigo-600 dark:text-indigo-400">
-          {" "}de exploración vocacional
-        </span>
-      </h2>
-    </Reveal>
-
-    <Reveal delay={0.1}>
-      <p className="max-w-2xl mx-auto text-base md:text-lg text-muted-foreground mb-8">
-        UNLP
-      </p>
-    </Reveal>
-
-    <Reveal delay={0.15}>
-      <Button
-        size="lg"
-        className="rounded-2xl gap-2"
-        onClick={() =>
-          window.open(
-            "https://explorador-vocacional.vercel.app/",
-            "_blank",
-          )
-        }
+      <section
+        id="top"
+        className="relative overflow-hidden px-6 py-24 md:py-28 text-center"
       >
-        ¡Comenzar aventura! <ArrowRight className="w-4 h-4" />
-      </Button>
-    </Reveal>
-  </div>
-</section>
+        {/* Fondo con mapa + blur + overlay */}
+        <div className="absolute inset-0 z-0">
+          <div
+            className="w-full h-full bg-cover bg-center blur-[2px] opacity-60"
+            style={{ backgroundImage: `url(${mapaBg})` }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/60 to-slate-950/90" />
+        </div>
 
+        {/* Contenido del hero por encima del fondo */}
+        <div className="relative z-10">
+          <Reveal>
+            <span className="inline-block rounded-full border px-3 py-1 text-xs text-muted-foreground mb-6">
+              Propósito Profesional
+            </span>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight mb-4">
+              {"Tú guía"}
+              <span className="text-indigo-600 dark:text-indigo-400">
+                {" "}
+                de exploración vocacional
+              </span>
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <p className="max-w-2xl mx-auto text-base md:text-lg text-muted-foreground mb-8">
+              UNLP
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <Button
+              size="lg"
+              className="rounded-2xl gap-2"
+              onClick={() =>
+                window.open(
+                  "https://explorador-vocacional.vercel.app/",
+                  "_blank",
+                )
+              }
+            >
+              ¡Comenzar aventura! <ArrowRight className="w-4 h-4" />
+            </Button>
+          </Reveal>
+        </div>
+      </section>
 
       {/* HOW IT WORKS — estilo Pitch con videos */}
-      <section className="px-6 py-24 md:py-32 bg-background">
+      <section
+        id="how-it-works"
+        className="px-6 py-24 md:py-32 bg-background"
+      >
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-16">
@@ -225,7 +274,7 @@ export default function LandingPROPRO() {
                 onClick={() =>
                   window.open(
                     "https://explorador-vocacional.vercel.app/",
-                    "_self",
+                    "_blank",
                   )
                 }
               >
@@ -236,20 +285,108 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      {/* CONTACTO */}
-      <section id="contact" className="px-6 py-16 md:py-20 bg-background">
-        <div className="max-w-3xl mx-auto text-center">
-          <h3 className="text-2xl md:text-3xl font-display font-bold mb-6">
-            ¿Charlamos sobre tu proyecto?
-          </h3>
-          <p className="text-muted-foreground">
-            Pronto agregamos el formulario.
-          </p>
+      {/* TIENDA — carrusel de merch */}
+      <section
+        id="tienda"
+        className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
+      >
+        <div className="max-w-5xl mx-auto space-y-12">
+          <Reveal>
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl md:text-4xl font-display font-bold">
+                Tienda PRO&PRO
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Merchandising y recursos visuales para acompañar la experiencia
+                PRO&PRO en eventos, escuelas y espacios de orientación.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.05}>
+            <div className="relative">
+              {/* Card principal del slide */}
+              <div
+                className="
+                  rounded-3xl border border-white/10
+                  bg-white/5 dark:bg-white/10
+                  backdrop-blur-xl
+                  p-6 md:p-8
+                  shadow-lg shadow-black/20
+                  flex flex-col md:flex-row gap-8 items-center
+                "
+              >
+                {/* Imagen */}
+                <div className="w-full md:w-1/2">
+                  <div className="relative overflow-hidden rounded-2xl bg-black/40 aspect-video">
+                    <img
+                      src={merchSlides[currentSlide].image}
+                      alt={merchSlides[currentSlide].title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+
+                {/* Texto */}
+                <div className="w-full md:w-1/2 space-y-4">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-indigo-400/40 bg-indigo-500/10 text-indigo-200">
+                    {merchSlides[currentSlide].tag}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-semibold">
+                    {merchSlides[currentSlide].title}
+                  </h3>
+                  <p className="text-sm md:text-base text-muted-foreground">
+                    {merchSlides[currentSlide].description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Controles del carrusel */}
+              <div className="mt-6 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  {merchSlides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentSlide(index)}
+                      className={`
+                        h-2 rounded-full transition
+                        ${
+                          index === currentSlide
+                            ? "bg-indigo-400 w-4"
+                            : "bg-white/20 w-2"
+                        }
+                      `}
+                    />
+                  ))}
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={prevSlide}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+                    aria-label="Anterior"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+                    aria-label="Siguiente"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="border-t border-muted bg-background py-10 text-center">
+      {/* FOOTER / CONTACTO */}
+      <footer
+        id="contact"
+        className="border-t border-muted bg-background py-10 text-center"
+      >
         <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:justify-between justify-center gap-4 px-6 text-sm text-muted-foreground">
           {/* Marca */}
           <div className="font-display font-semibold text-foreground">

@@ -310,7 +310,7 @@ export default function LandingPROPRO() {
                 Tienda PRO&PRO
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Merchandising y recursos visuales para acompañar la experiencia
+                Merchandising para acompañar la experiencia
                 PRO&PRO en eventos, escuelas y espacios de orientación.
               </p>
             </div>

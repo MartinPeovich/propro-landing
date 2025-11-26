@@ -298,7 +298,7 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      {/* TIENDA — carrusel de merch */}
+      {/* TIENDA — carrusel de merch (solo imagen) */}
       <section
         id="tienda"
         className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
@@ -310,8 +310,8 @@ export default function LandingPROPRO() {
                 Tienda PRO&PRO
               </h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Merchandising para acompañar la experiencia
-                PRO&PRO en eventos, escuelas y espacios de orientación.
+                Merchandising para acompañar la experiencia PRO&PRO en eventos,
+                escuelas y espacios de orientación.
               </p>
             </div>
           </Reveal>
@@ -322,40 +322,25 @@ export default function LandingPROPRO() {
               <div
                 className="
                   rounded-3xl border border-white/10
-                  bg-white/5 dark:bgWHITE/10
+                  bg-white/5 dark:bg-white/10
                   backdrop-blur-xl
                   p-6 md:p-8
                   shadow-lg shadow-black/20
-                  flex flex-col md:flex-row gap-8 items-center
+                  flex items-center justify-center
                 "
               >
-                {/* Imagen */}
-                <div className="w-full md:w-1/2">
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(true)}
-                    className="relative overflow-hidden rounded-2xl bg-black/40 aspect-video w-full h-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  >
-                    <img
-                      src={merchSlides[currentSlide].image}
-                      alt={merchSlides[currentSlide].title}
-                      className="w-full h-full object-cover cursor-zoom-in"
-                    />
-                  </button>
-                </div>
-
-                {/* Texto */}
-                <div className="w-full md:w-1/2 space-y-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs border border-indigo-400/40 bg-indigo-500/10 text-indigo-200">
-                    {merchSlides[currentSlide].tag}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold">
-                    {merchSlides[currentSlide].title}
-                  </h3>
-                  <p className="text-sm md:text-base text-muted-foreground">
-                    {merchSlides[currentSlide].description}
-                  </p>
-                </div>
+                {/* Imagen clickeable */}
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full relative overflow-hidden rounded-2xl bg-black/40 aspect-video focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                >
+                  <img
+                    src={merchSlides[currentSlide].image}
+                    alt={merchSlides[currentSlide].title}
+                    className="w-full h-full object-cover cursor-zoom-in"
+                  />
+                </button>
               </div>
 
               {/* Controles del carrusel */}
@@ -387,7 +372,7 @@ export default function LandingPROPRO() {
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border borderWHITE/15 bg-white/5 hover:bg-white/10 transition"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
                     aria-label="Siguiente"
                   >
                     <ChevronRight className="w-4 h-4" />

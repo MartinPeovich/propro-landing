@@ -318,7 +318,7 @@ export default function LandingPROPRO() {
 
           <Reveal delay={0.05}>
             <div className="relative">
-              {/* Card principal del slide */}
+              {/* Card principal: SOLO imagen */}
               <div
                 className="
                   rounded-3xl border border-white/10
@@ -329,7 +329,6 @@ export default function LandingPROPRO() {
                   flex items-center justify-center
                 "
               >
-                {/* Imagen clickeable */}
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
@@ -384,7 +383,7 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      {/* MODAL DE IMAGEN AMPLIADA */}
+      {/* MODAL DE IMAGEN AMPLIADA (con título + descripción) */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
           <div className="max-w-3xl w-full bg-background rounded-3xl overflow-hidden shadow-xl border border-white/10">

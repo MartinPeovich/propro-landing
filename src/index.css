@@ -82,3 +82,6 @@
   }
 }
 /* ====== Componentes ====== */
+html {
+  scroll-behavior: smooth;
+}

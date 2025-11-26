@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -7,6 +7,7 @@ import {
   Music2,
   ChevronLeft,
   ChevronRight,
+  X,
 } from "lucide-react";
 import { SlideIn } from "@/components/animations/SlideIn";
 import { Reveal } from "@/components/animations/Reveal";
@@ -16,7 +17,7 @@ import glosarioVideo from "@/assets/videos/glosario.mp4";
 import tutorialVideo from "@/assets/videos/tutorial.mp4";
 import mapaBg from "@/assets/mapa.png";
 
-// imágenes de merchandising (ajustá rutas/nombres si son distintos)
+// imágenes de merchandising
 import merch1 from "@/assets/tienda/tienda-1.png";
 import merch2 from "@/assets/tienda/tienda-2.png";
 import merch3 from "@/assets/tienda/tienda-3.png";
@@ -47,6 +48,7 @@ export default function LandingPROPRO() {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % merchSlides.length);
@@ -55,6 +57,17 @@ export default function LandingPROPRO() {
     setCurrentSlide((prev) =>
       prev === 0 ? merchSlides.length - 1 : prev - 1,
     );
+
+  // autoplay cada 8s (pausa si el modal está abierto)
+  useEffect(() => {
+    if (isModalOpen) return;
+
+    const id = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % merchSlides.length);
+    }, 8000);
+
+    return () => clearInterval(id);
+  }, [isModalOpen, merchSlides.length]);
 
   return (
     <main className="flex flex-col">
@@ -309,7 +322,7 @@ export default function LandingPROPRO() {
               <div
                 className="
                   rounded-3xl border border-white/10
-                  bg-white/5 dark:bg-white/10
+                  bg-white/5 dark:bgWHITE/10
                   backdrop-blur-xl
                   p-6 md:p-8
                   shadow-lg shadow-black/20
@@ -318,13 +331,17 @@ export default function LandingPROPRO() {
               >
                 {/* Imagen */}
                 <div className="w-full md:w-1/2">
-                  <div className="relative overflow-hidden rounded-2xl bg-black/40 aspect-video">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(true)}
+                    className="relative overflow-hidden rounded-2xl bg-black/40 aspect-video w-full h-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
                     <img
                       src={merchSlides[currentSlide].image}
                       alt={merchSlides[currentSlide].title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover cursor-zoom-in"
                     />
-                  </div>
+                  </button>
                 </div>
 
                 {/* Texto */}
@@ -370,7 +387,7 @@ export default function LandingPROPRO() {
                   </button>
                   <button
                     onClick={nextSlide}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border borderWHITE/15 bg-white/5 hover:bg-white/10 transition"
                     aria-label="Siguiente"
                   >
                     <ChevronRight className="w-4 h-4" />
@@ -381,6 +398,40 @@ export default function LandingPROPRO() {
           </Reveal>
         </div>
       </section>
+
+      {/* MODAL DE IMAGEN AMPLIADA */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+          <div className="max-w-3xl w-full bg-background rounded-3xl overflow-hidden shadow-xl border border-white/10">
+            {/* Imagen grande */}
+            <div className="relative bg-black">
+              <img
+                src={merchSlides[currentSlide].image}
+                alt={merchSlides[currentSlide].title}
+                className="w-full h-auto object-contain max-h-[70vh]"
+              />
+              <button
+                type="button"
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/70 text-white hover:bg-black/90"
+                aria-label="Cerrar"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Texto debajo de la imagen */}
+            <div className="p-6 space-y-2">
+              <h3 className="text-lg md:text-xl font-semibold">
+                {merchSlides[currentSlide].title}
+              </h3>
+              <p className="text-sm md:text-base text-muted-foreground">
+                {merchSlides[currentSlide].description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* FOOTER / CONTACTO */}
       <footer

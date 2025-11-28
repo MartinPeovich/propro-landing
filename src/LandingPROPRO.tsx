@@ -149,7 +149,7 @@ export default function LandingPROPRO() {
       <section className="px-6 py-16 md:py-24">
   <div className="max-w-4xl mx-auto text-center space-y-4">
     <Reveal delay={0.05}>
-      <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-10 md:mb-12">
+      <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-12 md:mb-16">
   ¿Para quién pensamos PRO&PRO?
 </h2>
     </Reveal>

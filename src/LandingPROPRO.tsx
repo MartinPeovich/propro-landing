@@ -146,7 +146,7 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      <section className="px-6 py-12 bg-background">
+      <section className="px-6 pt-24 pb-16 md:pt-32 md:pb-20">
   <div className="max-w-4xl mx-auto text-center space-y-4">
     <Reveal delay={0.05}>
       <h2 className="text-2xl md:text-3xl font-display font-bold">

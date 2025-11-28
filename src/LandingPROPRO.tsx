@@ -148,14 +148,9 @@ export default function LandingPROPRO() {
 
       <section className="px-6 py-12 bg-background">
   <div className="max-w-4xl mx-auto text-center space-y-4">
-    <Reveal>
-      <p className="text-sm uppercase tracking-[0.2em] text-indigo-400">
-        P&P
-      </p>
-    </Reveal>
     <Reveal delay={0.05}>
       <h2 className="text-2xl md:text-3xl font-display font-bold">
-        acompañamos a quienes estén eligiendo su futuro.
+        ¿Para quién pensamos PRO&PRO?
       </h2>
     </Reveal>
     <Reveal delay={0.1}>

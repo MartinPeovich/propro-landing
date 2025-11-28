@@ -28,24 +28,24 @@ import merch3 from "@/assets/tienda/tienda-3.png";
 export default function LandingPROPRO() {
   const merchSlides = [
     {
-      title: "Stickers PRO&PRO",
+      title: "Tote bag PRO&PRO",
       tag: "Nuevo",
       description:
-        "Pack de stickers para notebooks, carpetas y espacios de trabajo, con estética de la app.",
+        "Tote PRO&PRO para llevar todos tus productor pro&pro.",
       image: merch1,
     },
     {
-      title: "Remera PRO&PRO",
+      title: "Agenda PRO&PRO",
       tag: "Edición limitada",
       description:
-        "Remera con identidad PRO&PRO para eventos, ferias y actividades de orientación.",
+        "Tu agenda PRO&PRO para llevar tus ideas siempre contigo.",
       image: merch2,
     },
     {
-      title: "Kit merchandising",
+      title: "Poster J. V. Gonzalez",
       tag: "Para instituciones",
       description:
-        "Combo de materiales gráficos y merch para acompañar propuestas de orientación vocacional.",
+        "Inspirate con el poster de Joaquín V. González",
       image: merch3,
     },
   ];
@@ -302,7 +302,7 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      {/* TIENDA — carrusel de merch */}
+            {/* TIENDA — carrusel de merch (simple, sin fade) */}
       <section
         id="tienda"
         className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
@@ -334,7 +334,7 @@ export default function LandingPROPRO() {
                   if (end - touchStartX.current > 50) prevSlide();
                 }}
               >
-                {/* Imagen clickable */}
+                {/* Imagen (sin fade ni absolute) */}
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
@@ -344,9 +344,8 @@ export default function LandingPROPRO() {
                     key={currentSlide}
                     src={merchSlides[currentSlide].image}
                     alt={merchSlides[currentSlide].title}
-                    className="max-h-[320px] md:max-h-[360px] w-auto object-contain rounded-2xl cursor-zoom-in animate-fadeIn"
+                    className="max-h-[320px] md:max-h-[360px] w-auto object-contain rounded-2xl cursor-zoom-in"
                   />
-
                 </button>
 
                 {/* Título debajo */}
@@ -391,6 +390,7 @@ export default function LandingPROPRO() {
           </Reveal>
         </div>
       </section>
+
 
       {/* MODAL DE IMAGEN AMPLIADA (con título + descripción) */}
       {isModalOpen && (

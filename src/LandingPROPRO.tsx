@@ -302,90 +302,95 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      /* TIENDA — carrusel de merch */
-<section
-  id="tienda"
-  className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
->
-  <div className="max-w-4xl mx-auto space-y-12">
-    <Reveal>
-      <div className="text-center space-y-4">
-        <h2 className="text-3xl md:text-4xl font-display font-bold">
-          Tienda PRO&PRO
-        </h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">
-          Merchandising para acompañar la experiencia PRO&PRO en eventos,
-          escuelas y espacios de orientación.
-        </p>
-      </div>
-    </Reveal>
+      {/* TIENDA — carrusel de merch */}
+      <section
+        id="tienda"
+        className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
+      >
+        <div className="max-w-4xl mx-auto space-y-12">
+          <Reveal>
+            <div className="text-center space-y-4">
+              <h2 className="text-3xl md:text-4xl font-display font-bold">
+                Tienda PRO&PRO
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Merchandising para acompañar la experiencia PRO&PRO en eventos,
+                escuelas y espacios de orientación.
+              </p>
+            </div>
+          </Reveal>
 
-    {/* Carrusel */}
-    <Reveal delay={0.05}>
-      <div className="relative select-none">
+          <Reveal delay={0.05}>
+            <div className="relative select-none">
+              {/* Card / contenedor táctil */}
+              <div
+                className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 p-6 flex flex-col items-center gap-4"
+                onTouchStart={(e) =>
+                  (touchStartX.current = e.touches[0].clientX)
+                }
+                onTouchEnd={(e) => {
+                  const end = e.changedTouches[0].clientX;
+                  if (touchStartX.current - end > 50) nextSlide();
+                  if (end - touchStartX.current > 50) prevSlide();
+                }}
+              >
+                {/* Imagen clickable */}
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="w-full flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-2xl overflow-hidden bg-black/40"
+                >
+                  <img
+                    key={currentSlide}
+                    src={merchSlides[currentSlide].image}
+                    alt={merchSlides[currentSlide].title}
+                    className="max-h-[320px] md:max-h-[360px] w-auto object-contain rounded-2xl cursor-zoom-in animate-fadeIn"
+                  />
 
-        {/* Contenedor táctil */}
-        <div
-          className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 p-4"
-          onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
-          onTouchEnd={(e) => {
-            const end = e.changedTouches[0].clientX;
-            if (touchStartX.current - end > 50) nextSlide();
-            if (end - touchStartX.current > 50) prevSlide();
-          }}
-        >
-          {/* Imagen + fade */}
-          <div className="relative w-full h-[330px] md:h-[360px]">
-            <img
-              key={currentSlide}
-              src={merchSlides[currentSlide].image}
-              alt={merchSlides[currentSlide].title}
-              onClick={() => setIsModalOpen(true)}
-              className="
-              absolute inset-0 w-full h-full object-contain rounded-2xl cursor-zoom-in"/>
+                </button>
 
-          </div>
+                {/* Título debajo */}
+                <p className="mt-2 text-center text-lg font-semibold">
+                  {merchSlides[currentSlide].title}
+                </p>
+              </div>
 
-          {/* Título debajo */}
-          <p className="mt-4 text-center text-lg font-semibold">
-            {merchSlides[currentSlide].title}
-          </p>
+              {/* Indicadores */}
+              <div className="mt-6 flex justify-center gap-2">
+                {merchSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentSlide
+                        ? "w-5 bg-indigo-400"
+                        : "w-2 bg-white/20"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Flechas */}
+              <div className="absolute -bottom-12 right-0 flex gap-3">
+                <button
+                  onClick={prevSlide}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+                  aria-label="Anterior"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+                  aria-label="Siguiente"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </Reveal>
         </div>
-
-        {/* Indicadores */}
-        <div className="mt-6 flex justify-center gap-2">
-          {merchSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`
-                h-2 rounded-full transition-all
-                ${index === currentSlide ? "w-5 bg-indigo-400" : "w-2 bg-white/20"}
-              `}
-            />
-          ))}
-        </div>
-
-        {/* Flechas */}
-        <div className="absolute -bottom-12 right-0 flex gap-3">
-          <button
-            onClick={prevSlide}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
-          >
-            <ChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
-          >
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </div>
-      </div>
-    </Reveal>
-  </div>
-</section>
-
+      </section>
 
       {/* MODAL DE IMAGEN AMPLIADA (con título + descripción) */}
       {isModalOpen && (

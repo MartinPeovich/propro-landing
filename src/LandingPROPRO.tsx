@@ -24,6 +24,9 @@ import mapaBg from "@/assets/mapa.png";
 import merch1 from "@/assets/tienda/tienda-1.png";
 import merch2 from "@/assets/tienda/tienda-2.png";
 import merch3 from "@/assets/tienda/tienda-3.png";
+import merch4 from "@/assets/tienda/tienda-4.png";
+import merch5 from "@/assets/tienda/tienda-5.png";
+
 
 export default function LandingPROPRO() {
   const merchSlides = [
@@ -48,6 +51,19 @@ export default function LandingPROPRO() {
         "Inspirate con el poster de Joaquín V. González",
       image: merch3,
     },
+    {
+  title: "Remera PRO&PRO",
+  tag: "Nuevo",
+  description: "Remera canchera de PRO&PRO",
+  image: merch5, 
+},
+{
+  title: "Botella PRO&PRO",
+  tag: "Nuevo",
+  description: "Es importante mantenerse hidratado.",
+  image: merch4, 
+},
+
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);

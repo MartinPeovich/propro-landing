@@ -299,89 +299,97 @@ export default function LandingPROPRO() {
       </section>
 
       {/* TIENDA — carrusel de merch (solo imagen) */}
-      <section
-        id="tienda"
-        className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
-      >
-        <div className="max-w-5xl mx-auto space-y-12">
-          <Reveal>
-            <div className="text-center space-y-4">
-              <h2 className="text-3xl md:text-4xl font-display font-bold">
-                Tienda PRO&PRO
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Merchandising para acompañar la experiencia PRO&PRO en eventos,
-                escuelas y espacios de orientación.
-              </p>
-            </div>
-          </Reveal>
+      {/* TIENDA — carrusel de merch */}
+<section
+  id="tienda"
+  className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
+>
+  <div className="max-w-5xl mx-auto space-y-12">
+    <Reveal>
+      <div className="text-center space-y-4">
+        <h2 className="text-3xl md:text-4xl font-display font-bold">
+          Tienda PRO&PRO
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          Merchandising para acompañar la experiencia PRO&PRO en eventos,
+          escuelas y espacios de orientación.
+        </p>
+      </div>
+    </Reveal>
 
-          <Reveal delay={0.05}>
-            <div className="relative">
-              {/* Card principal: SOLO imagen */}
-              <div
-                className="
-                  rounded-3xl border border-white/10
-                  bg-white/5 dark:bg-white/10
-                  backdrop-blur-xl
-                  p-6 md:p-8
-                  shadow-lg shadow-black/20
-                  flex items-center justify-center
-                "
-              >
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full relative overflow-hidden rounded-2xl bg-black/40 aspect-video focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                >
-                  <img
-                    src={merchSlides[currentSlide].image}
-                    alt={merchSlides[currentSlide].title}
-                    className="w-full h-full object-cover cursor-zoom-in"
-                  />
-                </button>
-              </div>
+    <Reveal delay={0.05}>
+      <div className="relative">
+        {/* Card principal SOLO con la imagen */}
+        <div
+          className="
+            rounded-3xl border border-white/10
+            bg-white/5 dark:bg-white/10
+            backdrop-blur-xl
+            p-6 md:p-8
+            shadow-lg shadow-black/20
+            flex flex-col items-center gap-4
+          "
+        >
+          {/* Imagen clickeable */}
+          <button
+            type="button"
+            onClick={() => setIsModalOpen(true)}
+            className="relative overflow-hidden rounded-2xl bg-black/40 
+                       w-full max-h-[320px] md:max-h-[360px] 
+                       flex items-center justify-center
+                       focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            <img
+              src={merchSlides[currentSlide].image}
+              alt={merchSlides[currentSlide].title}
+              className="w-auto h-full object-contain cursor-zoom-in"
+            />
+          </button>
 
-              {/* Controles del carrusel */}
-              <div className="mt-6 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {merchSlides.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`
-                        h-2 rounded-full transition
-                        ${
-                          index === currentSlide
-                            ? "bg-indigo-400 w-4"
-                            : "bg-white/20 w-2"
-                        }
-                      `}
-                    />
-                  ))}
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={prevSlide}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
-                    aria-label="Anterior"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
-                    aria-label="Siguiente"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </Reveal>
+          {/* TÍTULO DEBAJO DE LA IMAGEN */}
+          <h3 className="text-lg md:text-xl font-semibold text-center">
+            {merchSlides[currentSlide].title}
+          </h3>
         </div>
-      </section>
+
+        {/* Controles del carrusel */}
+        <div className="mt-6 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {merchSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`
+                  h-2 rounded-full transition
+                  ${index === currentSlide ? "bg-indigo-400 w-4" : "bg-white/20 w-2"}
+                `}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={prevSlide}
+              className="flex h-9 w-9 items-center justify-center rounded-full 
+                         border border-white/15 bg-white/5 hover:bg-white/10 transition"
+              aria-label="Anterior"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="flex h-9 w-9 items-center justify-center rounded-full 
+                         border border-white/15 bg-white/5 hover:bg-white/10 transition"
+              aria-label="Siguiente"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </Reveal>
+  </div>
+</section>
 
       {/* MODAL DE IMAGEN AMPLIADA (con título + descripción) */}
       {isModalOpen && (

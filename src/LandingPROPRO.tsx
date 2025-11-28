@@ -146,6 +146,29 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
+      <section className="px-6 py-12 bg-background">
+  <div className="max-w-4xl mx-auto text-center space-y-4">
+    <Reveal>
+      <p className="text-sm uppercase tracking-[0.2em] text-indigo-400">
+        Para quién es
+      </p>
+    </Reveal>
+    <Reveal delay={0.05}>
+      <h2 className="text-2xl md:text-3xl font-display font-bold">
+        PRO&PRO acompaña a quienes estén eligiendo su futuro.
+      </h2>
+    </Reveal>
+    <Reveal delay={0.1}>
+      <div className="grid gap-6 md:grid-cols-3 text-sm text-muted-foreground">
+        <p>🧑‍🎓 Estudiantes que todavía no tienen claro qué estudiar.</p>
+        <p>🎮 Espacios de orientación que buscan propuestas interactivas.</p>
+        <p>🏫 Escuelas, facultades y equipos que trabajan proyectos de vida.</p>
+      </div>
+    </Reveal>
+  </div>
+</section>
+
+
       {/* HOW IT WORKS — estilo Pitch con videos */}
       <section
         id="how-it-works"

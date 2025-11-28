@@ -337,15 +337,13 @@ export default function LandingPROPRO() {
           {/* Imagen + fade */}
           <div className="relative w-full h-[330px] md:h-[360px]">
             <img
-              key={currentSlide} // clave clave para animación fade
+              key={currentSlide}
               src={merchSlides[currentSlide].image}
               alt={merchSlides[currentSlide].title}
               onClick={() => setIsModalOpen(true)}
               className="
-                absolute inset-0 w-full h-full object-contain rounded-2xl
-                opacity-0 animate-fadeIn cursor-pointer
-              "
-            />
+              absolute inset-0 w-full h-full object-contain rounded-2xl cursor-zoom-in"/>
+
           </div>
 
           {/* Título debajo */}

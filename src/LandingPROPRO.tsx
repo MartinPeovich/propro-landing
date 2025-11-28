@@ -150,12 +150,12 @@ export default function LandingPROPRO() {
   <div className="max-w-4xl mx-auto text-center space-y-4">
     <Reveal>
       <p className="text-sm uppercase tracking-[0.2em] text-indigo-400">
-        Para quién es
+        P&P
       </p>
     </Reveal>
     <Reveal delay={0.05}>
       <h2 className="text-2xl md:text-3xl font-display font-bold">
-        PRO&PRO acompaña a quienes estén eligiendo su futuro.
+        acompañamos a quienes estén eligiendo su futuro.
       </h2>
     </Reveal>
     <Reveal delay={0.1}>

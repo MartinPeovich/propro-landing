@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
@@ -16,6 +16,9 @@ import comenzarVideo from "@/assets/videos/comenzar.mp4";
 import glosarioVideo from "@/assets/videos/glosario.mp4";
 import tutorialVideo from "@/assets/videos/tutorial.mp4";
 import mapaBg from "@/assets/mapa.png";
+
+
+
 
 // imágenes de merchandising
 import merch1 from "@/assets/tienda/tienda-1.png";
@@ -49,6 +52,7 @@ export default function LandingPROPRO() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const touchStartX = useRef(0);
 
   const nextSlide = () =>
     setCurrentSlide((prev) => (prev + 1) % merchSlides.length);
@@ -298,13 +302,12 @@ export default function LandingPROPRO() {
         </div>
       </section>
 
-      {/* TIENDA — carrusel de merch (solo imagen) */}
-      {/* TIENDA — carrusel de merch */}
+      /* TIENDA — carrusel de merch */
 <section
   id="tienda"
   className="px-6 py-24 md:py-32 bg-background border-t border-white/10"
 >
-  <div className="max-w-5xl mx-auto space-y-12">
+  <div className="max-w-4xl mx-auto space-y-12">
     <Reveal>
       <div className="text-center space-y-4">
         <h2 className="text-3xl md:text-4xl font-display font-bold">
@@ -317,79 +320,74 @@ export default function LandingPROPRO() {
       </div>
     </Reveal>
 
+    {/* Carrusel */}
     <Reveal delay={0.05}>
-      <div className="relative">
-        {/* Card principal SOLO con la imagen */}
+      <div className="relative select-none">
+
+        {/* Contenedor táctil */}
         <div
-          className="
-            rounded-3xl border border-white/10
-            bg-white/5 dark:bg-white/10
-            backdrop-blur-xl
-            p-6 md:p-8
-            shadow-lg shadow-black/20
-            flex flex-col items-center gap-4
-          "
+          className="rounded-3xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 p-4"
+          onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
+          onTouchEnd={(e) => {
+            const end = e.changedTouches[0].clientX;
+            if (touchStartX.current - end > 50) nextSlide();
+            if (end - touchStartX.current > 50) prevSlide();
+          }}
         >
-          {/* Imagen clickeable */}
-          <button
-            type="button"
-            onClick={() => setIsModalOpen(true)}
-            className="relative overflow-hidden rounded-2xl bg-black/40 
-                       w-full max-h-[320px] md:max-h-[360px] 
-                       flex items-center justify-center
-                       focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          >
+          {/* Imagen + fade */}
+          <div className="relative w-full h-[330px] md:h-[360px]">
             <img
+              key={currentSlide} // clave clave para animación fade
               src={merchSlides[currentSlide].image}
               alt={merchSlides[currentSlide].title}
-              className="w-auto h-full object-contain cursor-zoom-in"
+              onClick={() => setIsModalOpen(true)}
+              className="
+                absolute inset-0 w-full h-full object-contain rounded-2xl
+                opacity-0 animate-fadeIn cursor-pointer
+              "
             />
-          </button>
+          </div>
 
-          {/* TÍTULO DEBAJO DE LA IMAGEN */}
-          <h3 className="text-lg md:text-xl font-semibold text-center">
+          {/* Título debajo */}
+          <p className="mt-4 text-center text-lg font-semibold">
             {merchSlides[currentSlide].title}
-          </h3>
+          </p>
         </div>
 
-        {/* Controles del carrusel */}
-        <div className="mt-6 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {merchSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`
-                  h-2 rounded-full transition
-                  ${index === currentSlide ? "bg-indigo-400 w-4" : "bg-white/20 w-2"}
-                `}
-              />
-            ))}
-          </div>
+        {/* Indicadores */}
+        <div className="mt-6 flex justify-center gap-2">
+          {merchSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`
+                h-2 rounded-full transition-all
+                ${index === currentSlide ? "w-5 bg-indigo-400" : "w-2 bg-white/20"}
+              `}
+            />
+          ))}
+        </div>
 
-          <div className="flex items-center gap-3">
-            <button
-              onClick={prevSlide}
-              className="flex h-9 w-9 items-center justify-center rounded-full 
-                         border border-white/15 bg-white/5 hover:bg-white/10 transition"
-              aria-label="Anterior"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={nextSlide}
-              className="flex h-9 w-9 items-center justify-center rounded-full 
-                         border border-white/15 bg-white/5 hover:bg-white/10 transition"
-              aria-label="Siguiente"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+        {/* Flechas */}
+        <div className="absolute -bottom-12 right-0 flex gap-3">
+          <button
+            onClick={prevSlide}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 transition"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </Reveal>
   </div>
 </section>
+
 
       {/* MODAL DE IMAGEN AMPLIADA (con título + descripción) */}
       {isModalOpen && (
